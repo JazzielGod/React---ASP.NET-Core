@@ -1,5 +1,5 @@
 export default function IndiceGeneros() {
     return (
-        <h3>Índice de géneros</h3>
+        <h3>Géneros</h3>
     );
 }

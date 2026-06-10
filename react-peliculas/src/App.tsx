@@ -1,13 +1,16 @@
+import { BrowserRouter } from "react-router";
 import Menu from "./componentes/Menu";
-import LandingPage from "./features/home/componentes/LandingPage";
+import AppRoutes from "./AppRoutes";
 
 export default function App() {
     return (
         <>
-            <Menu />
-            <div className="container">
-                <LandingPage />
-            </div>
+            <BrowserRouter>
+                <Menu />
+                <div className="container">
+                    <AppRoutes />
+                </div>
+            </BrowserRouter>
         </>
     );
 }
