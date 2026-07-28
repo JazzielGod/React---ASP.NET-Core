@@ -2,11 +2,17 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import type ActorCreacion from "../modelos/ActorCreacion.model";
 import Boton from "../../../componentes/Boton";
 import { NavLink } from "react-router";
+import * as yup from "yup";
+import { fechaNoMayorActual, primeraLetraMayuscula } from "../../../validaciones/Validaciones";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function FormularioActor(props: FormularioActorProps) {
     
     const {register,handleSubmit, formState: {errors, isValid, isSubmitting}} 
-        = useForm<ActorCreacion>({defaultValues: props.modelo ?? {nombre: ""}});
+        = useForm<ActorCreacion>({
+            resolver: yupResolver(reglasDeValidacion),
+            mode: "onChange",
+            defaultValues: props.modelo ?? {nombre: ""}});
 
     return (
         <form onSubmit={handleSubmit(props.onSubmit)}>
@@ -39,3 +45,8 @@ interface FormularioActorProps{
     modelo?: ActorCreacion;
     onSubmit: SubmitHandler<ActorCreacion>;
 }
+
+const reglasDeValidacion = yup.object().shape({
+    nombre: yup.string().required("El nombre es requerido").test(primeraLetraMayuscula()),
+    fechaNacimiento: yup.string().required("La fecha de nacimiento es obligatoria").test(fechaNoMayorActual())
+});

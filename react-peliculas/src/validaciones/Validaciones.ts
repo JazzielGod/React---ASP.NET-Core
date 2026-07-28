@@ -12,3 +12,16 @@ export function primeraLetraMayuscula() {
         }
     }
 }
+
+export function fechaNoMayorActual() {
+    return {
+        name:'fecha-no-mayor-actual',
+        message: "La fecha no puede ser mayor a la fecha actual",
+        test: (valor: string | undefined) => {
+            if(!valor) return true;
+            const fechaIngresada = new Date(valor);
+            const fechaActual = new Date();
+            return fechaIngresada <= fechaActual;
+        }
+    }
+}
