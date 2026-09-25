@@ -13,7 +13,8 @@ export default function EditarActor() {
         const timerId = setTimeout(() => {
             setModelo({
                 nombre: "Tom" + id,
-                fechaNacimiento: "1990-01-01"
+                fechaNacimiento: "1990-01-01",  
+                foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tom_Holland_by_Gage_Skidmore.jpg/960px-Tom_Holland_by_Gage_Skidmore.jpg'
             });
         }, 1000);
         return () => clearTimeout(timerId);
